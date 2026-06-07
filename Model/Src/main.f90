@@ -4,13 +4,20 @@ program main
   use mod_physics
   implicit none
   
-  character(len=100) :: input_file = "/raid/users/imai/Work/dev/tagged_moisture_model/Pre/era5/test/merged.nc"
-  
-  real, parameter    :: dt = 1800.0
-  integer, parameter :: sub_steps = 2
-  real, parameter    :: dlon = 1.0, dlat = 1.0
+  character(len=100) :: input_file  = "/raid/users/imai/Work/dev/tagged_moisture_model/Pre/era5/test/merged.nc"
+  character(len=100) :: output_file =  "/raid/users/imai/Work/dev/tagged_moisture_model/Work/test/output_tracer.nc"
 
-  real, allocatable  :: tracer(:,:), source_mask(:,:)
+  character(len=100) :: base_time   = "hours since 2025-07-01 00:00:00"
+  
+  real, parameter    :: dt          = 600.0
+  integer, parameter :: sub_steps   = 6
+  real, parameter    :: dlon        = 1.0
+  real, parameter    :: dlat        = 1.0
+
+  real, allocatable  :: tracer(:,:)
+  real, allocatable  :: w_model(:,:)
+  real, allocatable  :: source_mask(:,:)
+
   integer            :: t, s, i, j
   real               :: total_tracer
 
@@ -19,9 +26,9 @@ program main
   print *, "# ==================================================================="
 
   call init_grid(input_file)
-  allocate(tracer(nx, ny), source_mask(nx, ny))
+  allocate(tracer(nx, ny), w_model(nx, ny), source_mask(nx, ny))
   
-  call init_output("/raid/users/imai/Work/dev/tagged_moisture_model/Work/output_tracer.nc")
+  call init_output(output_file, base_time)
   print *, "OK"
 
   tracer = 0.0
