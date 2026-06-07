@@ -22,6 +22,7 @@ program main
   allocate(tracer(nx, ny), source_mask(nx, ny))
   
   call init_output("/raid/users/imai/Work/dev/tagged_moisture_model/Work/output_tracer.nc")
+  print *, "OK"
 
   tracer = 0.0
   source_mask = 0.0
@@ -29,7 +30,7 @@ program main
   ! example: around the Sea of Japan
   do j = 1, ny
     do i = 1, nx
-      if (lon(i) >= 130.0 .and. lon(i) <= 140.0 .and. lat(j) >= 35.0  .and. lat(j) <= 45.0) then 
+      if (lon(i) >= 100.0 .and. lon(i) <= 140.0 .and. lat(j) >= 15.0  .and. lat(j) <= 45.0) then 
         source_mask(i,j) = 1.0
       end if
     end do ! i

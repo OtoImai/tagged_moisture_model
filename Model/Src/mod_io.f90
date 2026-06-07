@@ -60,6 +60,11 @@ contains
     call check( nf90_get_var(ncid, varid_viwvn, v_eff, start=(/1,1,t_index/), count=(/nx,ny,1/)) )
     call check( nf90_get_var(ncid, varid_e, evap, start=(/1,1,t_index/), count=(/nx,ny,1/)) )
     call check( nf90_get_var(ncid, varid_tp, precip, start=(/1,1,t_index/), count=(/nx,ny,1/)) )
+    !call check( nf90_get_var(ncid, varid_tcwv, tcwv, start=(/t_index,1,1/), count=(/nx,ny,1/)) )
+    !call check( nf90_get_var(ncid, varid_viwve, u_eff, start=(/t_index,1,1/), count=(/nx,ny,1/)) )
+    !call check( nf90_get_var(ncid, varid_viwvn, v_eff, start=(/t_index,1,1/), count=(/nx,ny,1/)) )
+    !call check( nf90_get_var(ncid, varid_e, evap, start=(/t_index,1,1/), count=(/nx,ny,1/)) )
+    !call check( nf90_get_var(ncid, varid_tp, precip, start=(/t_index,1,1/), count=(/nx,ny,1/)) )
     
   end subroutine read_step
 
@@ -74,11 +79,14 @@ contains
     
     print *, "Creating output file: ", trim(filename)
     call check( nf90_create(trim(filename), NF90_CLOBBER, ncid_out) )
+
     
     call check( nf90_def_dim(ncid_out, "lon", nx, dimid_lon) )
     call check( nf90_def_dim(ncid_out, "lat", ny, dimid_lat) )
     call check( nf90_def_dim(ncid_out, "time", nt, dimid_time) )
     
+    call check( nf90_def_var(ncid_out, "lon", NF90_REAL, (/dimid_lon/), varid_lon) )
+    call check( nf90_def_var(ncid_out, "lat", NF90_REAL, (/dimid_lat/), varid_lat) )
     call check( nf90_def_var(ncid_out, "time", NF90_INT, (/dimid_time/), varid_time) )
     call check( nf90_def_var(ncid_out, "tracer", NF90_REAL, (/dimid_lon, dimid_lat, dimid_time/), varid_tracer_out) )
 
