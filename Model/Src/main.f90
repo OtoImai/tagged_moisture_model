@@ -4,13 +4,13 @@ program main
   use mod_physics
   implicit none
   
-  character(len=100) :: input_file  = "/raid/users/imai/Work/dev/tagged_moisture_model/Pre/era5/test/merged.nc"
-  character(len=100) :: output_file =  "/raid/users/imai/Work/dev/tagged_moisture_model/Work/test/output_tracer.nc"
+  character(len=100) :: input_file  = "/raid/users/imai/Work/dev/tagged_moisture_model/Pre/era5/test_cam/merged.nc"
+  character(len=100) :: output_file =  "/raid/users/imai/Work/dev/tagged_moisture_model/Work/output_tracer_cam.nc"
 
   character(len=100) :: base_time   = "hours since 2025-07-01 00:00:00"
   
-  real, parameter    :: dt          = 600.0
-  integer, parameter :: sub_steps   = 6
+  real, parameter    :: dt          = 600.0 ! Model time step [s] (10 minutes)
+  integer, parameter :: sub_steps   = 6     ! Number of sub-steps per data hour (3600s / 600s = 6)
   real, parameter    :: dlon        = 1.0
   real, parameter    :: dlat        = 1.0
 
@@ -19,7 +19,7 @@ program main
   real, allocatable  :: source_mask(:,:)
 
   integer            :: t, s, i, j
-  real               :: total_tracer
+  real               :: ratio, total_tracer
 
   print *, "# ==================================================================="
   print *, "#  START the COLORED MOISTURE TRACKING MODEL"
@@ -29,41 +29,69 @@ program main
   allocate(tracer(nx, ny), w_model(nx, ny), source_mask(nx, ny))
   
   call init_output(output_file, base_time)
-  print *, "OK"
 
   tracer = 0.0
   source_mask = 0.0
 
-  ! example: around the Sea of Japan
+  ! example 
   do j = 1, ny
     do i = 1, nx
-      if (lon(i) >= 100.0 .and. lon(i) <= 140.0 .and. lat(j) >= 15.0  .and. lat(j) <= 45.0) then 
+      if (lon(i) >= -100.0 .and. lon(i) <= -85.0 .and. lat(j) >= 10.0  .and. lat(j) <= 20.0) then 
         source_mask(i,j) = 1.0
       end if
     end do ! i
   end do ! j  
 
-  print *, "Source mask (Sea of Japan) configured."
+  print *, "Source mask configured."
 
-  do t = 1, nt
-    call read_step(t)
+  ! initialize the first step 
+  call read_step(1)
+  w_model = tcwv
+  
+  ! write out the initial state
+  call write_output_step(1, tracer, w_model)
+
+  print *, "Starting simulation loop..."  
+
+  do t = 1, nt - 1
     do s = 1, sub_steps
-      call calculate_advection(dt, dlon, dlat, tracer)
-      call calculate_physics(dt, tracer, source_mask)
+      ! Advection step 
+      call calculate_advection(dt, dlon, dlat, tracer, w_model)
+
+      ! Phsics step
+      call calculate_physics(dt, tracer, w_model, source_mask)
     end do ! s
-  
-    call write_output_step(t, tracer)
-  
+
+    ! ============================================================
+    ! Nudgingg / Mass Correction Step
+    ! ============================================================
+    call read_step(t + 1)
+
+    do j = 1, ny
+      do i = 1, nx
+        if (w_model(i,j) > 1.0e-12) then
+          ratio        = tcwv(i,j) / w_model(i,j)
+          tracer(i,j)  = tracer(i,j) * ratio
+          w_model(i,j) = tcwv(i,j)
+        else
+          tracer(i,j) = 0.0
+          w_model(i,j) = 0.0
+        end if ! (w_model(i,j) > 1.0e-12)
+      end do ! i
+    end do ! j
+    
+    call write_output_step(t + 1, tracer, w_model)
+
     total_tracer = sum(tracer)
-    if (mod(t, 10) == 0 .or. t ==1) then
-      print *, " Step:", t, "/", nt, " | Total Tracer Mass index:", total_tracer
-    end if
-  end do ! t 
+    if (mod(t, 10) == 0 .or. t == nt - 1) then
+      print '(A,I5,A,I5,A,E14.6)', " Step: ", t, " / ", nt - 1, " | Total Tagged Tracer Mass index: ", total_tracer
+    end if ! (mod(t, 10) == 0 .or. t == nt - 1)
+  end do ! t
 
   call close_io()
   call close_output()
 
-  deallocate(tracer, source_mask)
+  deallocate(tracer, w_model, source_mask)
 
   print *, "# ==================================================================="
   print *, "#  CALCULATION COMPLETED"

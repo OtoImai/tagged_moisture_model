@@ -2,7 +2,7 @@
 set -e -x
 
 BASEDIR=/raid/users/imai/Work/dev/tagged_moisture_model/
-EXPNAME=test
+EXPNAME=test_cam
 USEDATA=era5
 DATADIR="$BASEDIR"/Pre/"$USEDATA"/"$EXPNAME"
 

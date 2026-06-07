@@ -68,3 +68,155 @@ Downloading ../era5/test/viwve.nc
 DONE: vertical_integral_of_eastward_water_vapour_flux
 Downloading ../era5/test/viwvn.nc
 1aa771eba96bfab73b929d72741407f2.nc:   0%|          | 0.00/1.34M [00:00<?, ?B/s]1aa771eba96bfab73b929d72741407f2.nc:  75%|███████▍  | 1.00M/1.34M [00:02<00:00, 450kB/s]                                                                                        DONE: vertical_integral_of_northward_water_vapour_flux
+2026-06-07 16:24:18,855 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:24:18,856 INFO Request ID is eba7201f-6e0d-4a84-9685-f93f5433b4f7
+Downloading ../era5/test_cam/prec.nc
+Traceback (most recent call last):
+  File "/raid/users/imai/Work/dev/tagged_moisture_model/Pre/scripts/00_download_era5.py", line 42, in <module>
+    c.retrieve(
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/ecmwf/datastores/legacy_client.py", line 167, in retrieve
+    submitted = self.client.submit_and_wait_on_results(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/ecmwf/datastores/client.py", line 430, in submit_and_wait_on_results
+    return self._retrieve_api.submit(collection_id, request).get_results()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/ecmwf/datastores/processing.py", line 495, in get_results
+    return self._make_results(wait=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/ecmwf/datastores/processing.py", line 479, in _make_results
+    self._wait_on_results()
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/ecmwf/datastores/processing.py", line 457, in _wait_on_results
+    while not self.results_ready:
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/ecmwf/datastores/processing.py", line 465, in results_ready
+    status = self.status
+             ^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/ecmwf/datastores/processing.py", line 424, in status
+    reply = self.json
+            ^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/ecmwf/datastores/processing.py", line 409, in json
+    return self._get_api_response("get", params=params)._json_dict
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/ecmwf/datastores/processing.py", line 394, in _get_api_response
+    return ApiResponse.from_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/ecmwf/datastores/processing.py", line 171, in from_request
+    response = robust_request(
+               ^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/multiurl/http.py", line 495, in wrapped
+    r = call(main_url, *args, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/urllib3/connectionpool.py", line 789, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/site-packages/urllib3/connection.py", line 507, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/http/client.py", line 1423, in getresponse
+    response.begin()
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/socket.py", line 707, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/ssl.py", line 1252, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/imai/.pyenv/versions/anaconda3-2024.10-1/lib/python3.12/ssl.py", line 1104, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+2026-06-07 16:24:22,733 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:24:22,733 INFO Request ID is d439b2c7-e90f-41a8-b7fd-6504644a420b
+2026-06-07 16:24:23,020 INFO status has been updated to accepted
+2026-06-07 16:24:57,182 INFO status has been updated to running
+2026-06-07 16:25:14,545 INFO status has been updated to successful
+Downloading ../era5/test_cam/prec.nc
+b5e5b1d45055bc58f972bde366e3e825.nc:   0%|          | 0.00/868k [00:00<?, ?B/s]b5e5b1d45055bc58f972bde366e3e825.nc: 100%|██████████| 868k/868k [00:02<00:00, 347kB/s]                                                                                      2026-06-07 16:25:19,898 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:25:19,898 INFO Request ID is 35c831dd-f9f9-4bd3-822b-8705475e93e3
+2026-06-07 16:25:20,257 INFO status has been updated to accepted
+2026-06-07 16:25:43,734 INFO status has been updated to running
+2026-06-07 16:25:55,395 INFO status has been updated to successful
+DONE: total_precipitation
+Downloading ../era5/test_cam/evap.nc
+465d4facf67a1aed0d228cc9c4605d2.nc:   0%|          | 0.00/1.81M [00:00<?, ?B/s]465d4facf67a1aed0d228cc9c4605d2.nc:  55%|█████▌    | 1.00M/1.81M [00:02<00:02, 413kB/s]465d4facf67a1aed0d228cc9c4605d2.nc: 100%|██████████| 1.81M/1.81M [00:02<00:00, 799kB/s]                                                                                       2026-06-07 16:26:02,192 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:26:02,193 INFO Request ID is 03807a8c-9539-4303-a250-440b287e1ca5
+2026-06-07 16:26:02,464 INFO status has been updated to accepted
+2026-06-07 16:26:16,999 INFO status has been updated to running
+2026-06-07 16:26:36,641 INFO status has been updated to successful
+DONE: evaporation
+Downloading ../era5/test_cam/tcwv.nc
+d416f5fd416211678978fff13baa0c2.nc:   0%|          | 0.00/1.69M [00:00<?, ?B/s]2026-06-07 16:27:13,271 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:27:13,271 INFO Request ID is 0cb9b33a-4790-4b83-a3ea-7548dbd65506
+2026-06-07 16:27:13,703 INFO status has been updated to accepted
+2026-06-07 16:27:28,263 INFO status has been updated to running
+2026-06-07 16:27:48,400 INFO status has been updated to successful
+Downloading ../era5/test_cam/prec.nc
+e0d6d3dfc7297536a41ceaa52f23a8d3.nc:   0%|          | 0.00/305k [00:00<?, ?B/s]e0d6d3dfc7297536a41ceaa52f23a8d3.nc: 100%|██████████| 305k/305k [00:02<00:00, 152kB/s]                                                                                      2026-06-07 16:27:53,868 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:27:53,868 INFO Request ID is 9e91eb34-d214-49c0-87b6-b2c6ab501646
+2026-06-07 16:27:54,144 INFO status has been updated to accepted
+2026-06-07 16:28:16,575 INFO status has been updated to running
+2026-06-07 16:28:45,595 INFO status has been updated to successful
+DONE: total_precipitation
+Downloading ../era5/test_cam/evap.nc
+2c93311344499776245f07d5f169a4e6.nc:   0%|          | 0.00/547k [00:00<?, ?B/s]2c93311344499776245f07d5f169a4e6.nc: 100%|██████████| 547k/547k [00:02<00:00, 268kB/s]                                                                                      2026-06-07 16:28:50,227 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:28:50,227 INFO Request ID is a0a4808e-ff9e-4419-801c-6b6200939664
+2026-06-07 16:28:50,538 INFO status has been updated to accepted
+2026-06-07 16:29:05,270 INFO status has been updated to running
+2026-06-07 16:29:24,792 INFO status has been updated to successful
+DONE: evaporation
+Downloading ../era5/test_cam/tcwv.nc
+4280a50869b5165577e108daae073cf4.nc:   0%|          | 0.00/494k [00:00<?, ?B/s]4280a50869b5165577e108daae073cf4.nc: 100%|██████████| 494k/494k [00:02<00:00, 251kB/s]                                                                                      2026-06-07 16:29:29,161 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:29:29,161 INFO Request ID is 02e0d2df-8a10-4461-a0ba-73f409718664
+2026-06-07 16:29:29,427 INFO status has been updated to accepted
+2026-06-07 16:29:54,419 INFO status has been updated to running
+2026-06-07 16:30:25,075 INFO status has been updated to successful
+DONE: total_column_water_vapour
+Downloading ../era5/test_cam/viwve.nc
+c37c45994a00cd27aa7f8ea6342893a0.nc:   0%|          | 0.00/548k [00:00<?, ?B/s]c37c45994a00cd27aa7f8ea6342893a0.nc: 100%|██████████| 548k/548k [00:02<00:00, 270kB/s]                                                                                      2026-06-07 16:30:30,266 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:30:30,266 INFO Request ID is b8dc3fa0-6ac0-4c90-a5e5-fe42218a8e45
+2026-06-07 16:30:30,539 INFO status has been updated to accepted
+2026-06-07 16:30:45,649 INFO status has been updated to running
+2026-06-07 16:31:08,069 INFO status has been updated to successful
+DONE: vertical_integral_of_eastward_water_vapour_flux
+Downloading ../era5/test_cam/viwvn.nc
+1924d56fa091262fa36accc2bd266d3.nc:   0%|          | 0.00/550k [00:00<?, ?B/s]1924d56fa091262fa36accc2bd266d3.nc: 100%|██████████| 550k/550k [00:02<00:00, 246kB/s]                                                                                     DONE: vertical_integral_of_northward_water_vapour_flux
+2026-06-07 16:38:26,027 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:38:26,027 INFO Request ID is a1418662-749e-4190-b482-bbf89f64d568
+2026-06-07 16:38:26,311 INFO status has been updated to accepted
+2026-06-07 16:39:01,553 INFO status has been updated to running
+2026-06-07 16:39:18,928 INFO status has been updated to successful
+Downloading ../era5/test_cam/prec.nc
+6748a6af7c34e5c74eef2ab89fcd4950.nc:   0%|          | 0.00/663k [00:00<?, ?B/s]6748a6af7c34e5c74eef2ab89fcd4950.nc: 100%|██████████| 663k/663k [00:02<00:00, 294kB/s]                                                                                      2026-06-07 16:39:25,272 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:39:25,272 INFO Request ID is ffe728b5-ca00-41f1-b1e0-8ca198ea9834
+2026-06-07 16:39:25,564 INFO status has been updated to accepted
+2026-06-07 16:39:40,115 INFO status has been updated to running
+2026-06-07 16:39:59,629 INFO status has been updated to successful
+DONE: total_precipitation
+Downloading ../era5/test_cam/evap.nc
+213687f111132b8308aa32e202bbfc49.nc:   0%|          | 0.00/1.22M [00:00<?, ?B/s]213687f111132b8308aa32e202bbfc49.nc:  82%|████████▏ | 1.00M/1.22M [00:02<00:00, 457kB/s]                                                                                        2026-06-07 16:40:06,196 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:40:06,196 INFO Request ID is 27eea890-f4f3-4ad8-97fc-f535d6e12503
+2026-06-07 16:40:06,662 INFO status has been updated to accepted
+2026-06-07 16:40:21,240 INFO status has been updated to running
+2026-06-07 16:40:40,969 INFO status has been updated to successful
+DONE: evaporation
+Downloading ../era5/test_cam/tcwv.nc
+1f24b2647bb802e20f24e77d8a99f992.nc:   0%|          | 0.00/1.10M [00:00<?, ?B/s]1f24b2647bb802e20f24e77d8a99f992.nc:  91%|█████████ | 1.00M/1.10M [00:02<00:00, 421kB/s]                                                                                        2026-06-07 16:40:46,154 INFO [2025-12-11T00:00:00] Please note that a dedicated catalogue entry for this dataset, post-processed and stored in Analysis Ready Cloud Optimized (ARCO) format (Zarr), is available for optimised time-series retrievals (i.e. for retrieving data from selected variables for a single point over an extended period of time in an efficient way). You can discover it [here](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries?tab=overview)
+2026-06-07 16:40:46,154 INFO Request ID is 6e9002b6-30eb-4598-a1a0-8aaf1a51b460
+2026-06-07 16:40:46,430 INFO status has been updated to accepted

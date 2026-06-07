@@ -13,13 +13,13 @@ var_dict = {
     "viwvn": "vertical_integral_of_northward_water_vapour_flux"
 }
 
-out_dir = '../era5/test'
+out_dir = '../era5/test_cam'
 os.makedirs(out_dir, exist_ok=True)
 
 year = '2025'
 month = '07'
-day = ['01', '02', '03']
-area = [70, 60, 0, 170]
+day = ['01', '02', '03', '04', '05', '06', '07']
+area = [40, -140, -10, -80]
 time = [f'{h:02d}:00' for h in range(24)]
 grid = [1.0, 1.0]
 
