@@ -72,7 +72,7 @@ contains
     deallocate(r, r_one)
   end subroutine calculate_advection  
 
-  subroutine calc_flux_advection(r_in, u_flux, v_flux, dlon, dlat, div_out)
+  subroutine calc_flux_divergence(r_in, u_flux, v_flux, dlon, dlat, div_out)
     real, intent(in)  :: r_in(:,:), u_flux(:,:), v_flux(:,:)
     real, intent(in)  :: dlon, dlat
     real, intent(out) :: div_out(nx, ny)
@@ -136,5 +136,5 @@ contains
 
       end do ! i
     end do  ! j
-  end subroutine calc_flux_advection
+  end subroutine calc_flux_divergence
 end module mod_advect
