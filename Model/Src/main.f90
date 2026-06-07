@@ -4,8 +4,8 @@ program main
   use mod_physics
   implicit none
   
-  character(len=100) :: input_file  = "/raid/users/imai/Work/dev/tagged_moisture_model/Pre/era5/test_cam/merged.nc"
-  character(len=100) :: output_file =  "/raid/users/imai/Work/dev/tagged_moisture_model/Work/output_tracer_cam.nc"
+  character(len=100) :: input_file  = "/raid/users/imai/Work/dev/tagged_moisture_model/Pre/era5/test_tohoku/merged.nc"
+  character(len=100) :: output_file =  "/raid/users/imai/Work/dev/tagged_moisture_model/Work/output_tracer_tohoku.nc"
 
   character(len=100) :: base_time   = "hours since 2025-07-01 00:00:00"
   
@@ -36,7 +36,7 @@ program main
   ! example 
   do j = 1, ny
     do i = 1, nx
-      if (lon(i) >= -100.0 .and. lon(i) <= -85.0 .and. lat(j) >= 10.0  .and. lat(j) <= 20.0) then 
+      if (lon(i) >= 118.0 .and. lon(i) <= 130.0 .and. lat(j) >= 23.0  .and. lat(j) <= 33.0) then 
         source_mask(i,j) = 1.0
       end if
     end do ! i
