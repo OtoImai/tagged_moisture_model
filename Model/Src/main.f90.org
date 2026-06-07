@@ -1,0 +1,21 @@
+program main
+  use mod_io 
+  use mod_advect
+  use mod_physics
+  implicit none
+  character(len=100) :: input_file = "/raid/users/imai/Work/dev/tagged_moisture_model/Pre/era5/test/merged.nc"
+
+  print *, "# ==================================================================="
+  print *, "#  START the COLORED MOISTURE TRACKING MODEL"
+  print *, "# ==================================================================="
+
+  call init_grid(input_file)
+
+  call read_step(1)
+
+  print *, "Verification (Step 1):"
+  print *, "TCWV at (1,1) = ", tcwv(1,1)
+  print *, "EVAP at (1,1) = ", evap(1,1)
+
+  call close_io()
+end program main
