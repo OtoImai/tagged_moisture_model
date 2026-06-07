@@ -1,15 +1,16 @@
 module mod_physics
-  use mod_io, only: nx, ny, tcwv, evap, precip
+  use mod_io, only: nx, ny, evap, precip
   implicit none
 
 contains 
 
-  subroutine calculate_physics(dt, tracer, source_mask)
+  subroutine calculate_physics(dt, q, w_model, source_mask)
     real, intent(in)    :: dt 
-    real, intent(inout) :: tracer(nx,ny) 
-    real, intent(in)    :: source_mask(nx,ny)
+    real, intent(inout) :: q(:,:)
+    real, intent(inout) :: w_model(:,:)
+    real, intent(in)    :: source_mask(:,:)
 
-    real                :: e_rate, p_rate, tracer_ratio
+    real                :: r
     integer             :: i, j 
 
     do j = 1, ny
